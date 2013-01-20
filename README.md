@@ -11,7 +11,7 @@ Features:
 - efficient communication (via websocket), lightweighted server (python gevent), efficient data collection
 
 Usage:
-- depends on following python libraries - must be installed  (recent versions) 
+- depends on following python libraries - that must be installed  (recent versions) 
   before starting this script:
   gevent,  gevent-socketio, paste,  psutil
 
