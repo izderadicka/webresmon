@@ -1,5 +1,5 @@
 Simple python script to remotely monitor key system resources (CPU. memory, Net and Disk IO). 
-Stats are presented in from of live graphs.
+Stats are presented in form of live graphs.
 
 Features:
 - presents CPU utilization (summarized for all CPUs), Memory usage (physical and swap) 
