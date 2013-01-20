@@ -1,0 +1,70 @@
+<html>
+    <head>
+        <title>System Resources Monitor</title>
+        <script type="text/javascript" src="/static/js/jquery.min.js"></script>
+        <script type="text/javascript" src="/static/js/jquery.flot.min.js"></script>
+        <script type="text/javascript" src="/static/js/socket.io.min.js"></script>
+        <script type="text/javascript" src="/static/js/graph.js"></script>
+        <style>
+        body {
+        	font-family: Arial, Helvetica, sans-serif;
+        }
+        	.graph {
+        		width:600px;height:200px;
+        		float:left;
+        	}
+        	#conn_status, #about_info {
+        		padding-top:20px;
+        		color:grey;
+        		font-size:12px;
+        		padding-bottom: 20px;
+        		width:200px;
+        		float:left;
+        	}
+        	
+        	#about_info {
+        		float:right;
+        		padding-right:20px;
+        		text-align: right;
+        		
+        	}
+        	#ctl_section {
+        		float: right;
+        	}
+        	.section {
+        		float: left;
+        		margin-right:50px
+        	}
+        	.new_line {
+        		clear: both;
+        	}
+        	h2 {
+        		display: block;
+        		width:200px;
+        	}
+        </style>
+    </head>
+    <body>
+    	 <div id="ctl_section">
+    	 	<label for="interval">Update Interval</label>
+    	 	<input name="interval" id="interval_input" type="text" size="3"/>
+    	 	<input type="button" id="pause_btn" value="Pause"/> </div>
+        <h1>System Resources Monitor</h1>
+       
+        <div id="CPU_section" class="section new_line">
+        	<h2>CPU Utilization</h2>
+        <div id="cpu_graph" class="graph"></div></div>
+         <div id="mem_section" class="section">
+        	<h2>Memory Usage</h2>
+        <div id="mem_graph" class="graph"></div></div>
+         <div id="disk_section" class="section new_line">
+        	<h2>Disk I/O</h2>
+        <div id="disk_graph" class="graph"></div></div>
+         <div id="net_section" class="section">
+        	<h2>Network I/O</h2>
+        <div id="net_graph" class="graph"></div></div>
+       
+        <div id="conn_status">Not Connected</div>
+        <div id="about_info">(c) 2013 <a href="http://zderadicka.eu">IZ</a> <a href="http://zderadicka.eu">webresmon</a></div>
+    </body>
+</html>
