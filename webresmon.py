@@ -1,4 +1,4 @@
-#/usr/bin/env python
+#!/usr/bin/env python
 __version__='0.1'
 
 import os
