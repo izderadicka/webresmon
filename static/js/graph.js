@@ -5,6 +5,7 @@ $(function() {
     var paused=false;
     var datalen = 100;
     var interval=1;
+    var tzOffset=-(new Date().getTimezoneOffset())
     
     var kbFormatter=function(val, axis) {
     	if (val>=1000) {
@@ -16,9 +17,20 @@ $(function() {
     var pctFormatter=function(val, axis) {
     	return (val).toFixed(axis.tickDecimals) + " %";
     }
+    
+    var timeFormatter= function (val, axis) {
+    	var lz=function(n){
+    		var res=n.toString();
+    		return res.length<2?'0'+res:res
+    	}
+    var d = new Date(val);
+    return lz(d.getHours()) + ":" + lz(d.getMinutes())+":"+lz(d.getSeconds());
+}
     var graphOptions={
                 xaxis:{
                     mode: "time",
+                    tickFormatter: timeFormatter,
+                    timezone: 'browser', //seems not to work
                     timeformat: "%H:%M:%S",
                     minTickSize: [1, "minute"],
                 },
@@ -64,9 +76,8 @@ $(function() {
     var updateGraph= function( graphId, newData) {
     	  var graph=graphs[graphId],
     	  series=[]
-    	  var initData=function(s) {
+    	  var initData=function(s,ts) {
     	  	s.data=[]
-    	  	var ts=new Date().getTime();
     	  	for (var i=datalen-1; i>=0; i-=1) {
     	  		s.data[i]=[ts,0];
     	  		ts-=interval*1000;
@@ -76,7 +87,7 @@ $(function() {
     	  for (var i=0;i<graph.series.length;i+=1) {
     	  	var serie=graph.series[i];
     	  	if (!serie.data) {
-    	  		initData(serie)
+    	  		initData(serie, newData.x-interval*1000)
     	  	}
     	  	serie.data.push([newData.x, newData[serie.key]]);
         	while (serie.data.length > datalen) {
