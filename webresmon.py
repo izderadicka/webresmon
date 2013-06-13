@@ -2,6 +2,7 @@
 __version__='0.1'
 
 import os
+import sys
 import time
 import paste.urlparser
 import gevent
@@ -147,8 +148,9 @@ class App(object):
             return self.static_handler(environ, start_response)
 
 def main():
-    
-   
+    global PORT
+    if len(sys.argv)>1:
+        PORT=int(sys.argv[1])
     http_server = SocketIOServer(
         ('', PORT),App(), 
         policy_server=False, resource='socket.io'
